@@ -86,7 +86,7 @@ export default class GenericSecretBackend extends React.Component {
         tokenHasCapabilities(['list'], this.state.currentLogicalPath)
             .then(() => {
                 // Load secret list at current path
-                callVaultApi('get', this.state.currentLogicalPath, { list: true }, null, null)
+                callVaultApi('get', this.state.currentLogicalPath+"/metadata", { list: true }, null, null)
                     .then((resp) => {
                         let secrets = _.get(resp, 'data.data.keys', []);
                         this.setState({ secretList: secrets });
